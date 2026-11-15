@@ -160,8 +160,6 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     }
   }, [settings]);
 
-  if (!isOpen) return null;
-
   // ── Login Handler ──
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -589,6 +587,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     herbs: { name: 'أعشاب طازجة', color: 'bg-teal-50 text-teal-700 border-teal-200', icon: Leaf },
     seasonal: { name: 'محاصيل موسمية', color: 'bg-amber-50 text-amber-700 border-amber-200', icon: Calendar }
   };
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-[100] overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 fade-in text-right">
