@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+  <!-- AL MAHER PRIMARY HORIZONTAL LOGO -->
+  <g id="logo-mark">
+    <!-- Stylized Leaf Icon in Red Brand Color -->
+    <path d="M42 22C42 22 56 23 60 38C61.5 43.5 59 49 54 53C48 57.5 39 57 34 52C28.5 46.5 29.5 36 34 29C37 24 42 22 42 22Z" fill="#D92732"/>
+    <path d="M42 22C40 32 37 42 34 52" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="56" cy="20" r="4.5" fill="#15803D"/>
+  </g>
+  <g id="arabic-wordmark" fill="#252525">
+    <text x="80" y="52" font-family="'IBM Plex Sans Arabic', 'Cairo', 'Arial', sans-serif" font-size="34" font-weight="800" letter-spacing="-0.5">الـمـاهـر</text>
+  </g>
+  <g id="english-tagline">
+    <text x="210" y="38" font-family="'Inter', 'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="#D92732" letter-spacing="2">AL MAHER</text>
+    <text x="210" y="52" font-family="'IBM Plex Sans Arabic', 'Cairo', sans-serif" font-size="10.5" font-weight="500" fill="#666666">الطازة تبدأ من هنا</text>
+  </g>
+</svg>

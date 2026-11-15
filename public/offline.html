@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>غير متصل بالإنترنت | الماهر</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      background-color: #F7F7F5;
+      color: #252525;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+      text-align: center;
+    }
+    .card {
+      background: #FFFFFF;
+      border: 1px solid #EAEAEA;
+      border-radius: 20px;
+      padding: 40px 32px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    }
+    .logo {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #252525;
+    }
+    p {
+      font-size: 15px;
+      color: #666666;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #D92732;
+      color: #FFFFFF;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 12px 28px;
+      border-radius: 9999px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      width: 100%;
+    }
+    .btn:hover {
+      background-color: #B81D26;
+    }
+    .tagline {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #999999;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="/favicon.svg" alt="الماهر" class="logo">
+    <h1>يبدو أنك غير متصل بالإنترنت</h1>
+    <p>يرجى التحقق من اتصالك بالإنترنت للمتابعة وتصفح أحدث الخضروات والفاكهة الطازجة في متجر الماهر.</p>
+    <button class="btn" onclick="window.location.reload()">إعادة المحاولة</button>
+    <div class="tagline">الماهر — الطازة تبدأ من الماهر</div>
+  </div>
+</body>
+</html>

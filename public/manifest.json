@@ -1,0 +1,50 @@
+{
+  "name": "الماهر | AL MAHER",
+  "short_name": "الماهر",
+  "description": "متجر الماهر للخضروات والفاكهة الطازجة — الطازة تبدأ من الماهر",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#D92732",
+  "lang": "ar",
+  "dir": "rtl",
+  "orientation": "portrait",
+  "categories": ["shopping", "food", "lifestyle"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "48x48 72x72 96x96 128x128 192x192 256x256 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "الخضروات",
+      "short_name": "خضروات",
+      "description": "تصفح تشكيلة الخضروات الطازجة",
+      "url": "/#vegetables",
+      "icons": [{ "src": "/favicon.svg", "sizes": "96x96" }]
+    },
+    {
+      "name": "الفاكهة",
+      "short_name": "فاكهة",
+      "description": "تصفح الفواكه الموسمية والطازجة",
+      "url": "/#fruits",
+      "icons": [{ "src": "/favicon.svg", "sizes": "96x96" }]
+    },
+    {
+      "name": "سلة الطلب",
+      "short_name": "السلة",
+      "description": "عرض سلة التسوق الحالية",
+      "url": "/#cart",
+      "icons": [{ "src": "/favicon.svg", "sizes": "96x96" }]
+    }
+  ]
+}

@@ -1,0 +1,504 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: #F7F7F5;
+    color: #252525;
+    overflow-x: hidden;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Custom Scrollbar for Smooth Catalog Navigation */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F7F7F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4D4D8;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A1A1AA;
+}
+
+/* =====================================================================
+   PREMIUM MOTION & MICRO-INTERACTIONS
+   ===================================================================== */
+
+/* 1. Product Card Transitions */
+.product-card {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.product-card:active {
+  transform: scale(0.985);
+  transition-duration: 0.12s;
+}
+
+/* 2. Image Zoom on Hover */
+.product-card-img {
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.25s ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover .product-card-img {
+    transform: scale(1.045);
+  }
+}
+
+/* 3. Favorite Heart Pop Animation */
+@keyframes heartPop {
+  0% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform: scale(1.38);
+  }
+
+  65% {
+    transform: scale(0.92);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.heart-pop {
+  animation: heartPop 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* 4. Skeleton Shimmer Loading Effect */
+@keyframes shimmerSweep {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg,
+      #F4F4F5 0%,
+      #E4E4E7 50%,
+      #F4F4F5 100%);
+  background-size: 200% 100%;
+  animation: shimmerSweep 1.6s infinite ease-in-out;
+}
+
+/* 5. Staggered Entrance & Fade-Up */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up-enter {
+  animation: fadeUp 0.36s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 6. Drawer & Slide Animations */
+@keyframes drawerSlideIn {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.drawer-enter {
+  animation: drawerSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes bottomSheetSlideUp {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.bottom-sheet-enter {
+  animation: bottomSheetSlideUp 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-enter {
+  animation: modalScaleIn 0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 7. Toast Notification Entrance */
+@keyframes toastSlideDown {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -18px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+.toast-enter {
+  animation: toastSlideDown 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 8. Micro-tactile Tap feedback */
+.tap-tactile {
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tap-tactile:active {
+  transform: scale(0.96);
+}
+
+/* 9. Cinematic Full-Image Hero Animations */
+@keyframes heroSlowZoom {
+  0% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.hero-cinematic-bg {
+  animation: heroSlowZoom 14s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes heroRevealUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-reveal-1 {
+  animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.hero-reveal-2 {
+  animation: heroRevealUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+
+.hero-reveal-3 {
+  animation: heroRevealUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
+
+.hero-reveal-4 {
+  animation: heroRevealUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both;
+}
+
+.hero-reveal-5 {
+  animation: heroRevealUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
+}
+
+.hero-reveal-6 {
+  animation: heroRevealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both;
+}
+
+/* 10. Immersive 3D Arabic Typography & Depth System */
+.hero-3d-title {
+  color: #252525;
+  text-shadow: 
+    0 1px 1px rgba(255, 255, 255, 0.95),
+    0 2px 4px rgba(0, 0, 0, 0.14),
+    0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.hero-3d-wordmark {
+  color: #D92732;
+  /* Multi-stage 3D extrusion layers + realistic directional ambient shadow */
+  text-shadow:
+    0 -1px 0 rgba(255, 255, 255, 0.45),      /* Sunlit top specular rim */
+    0 1px 0 #C41C26,                         /* Extrusion step 1 */
+    0 2px 0 #B31720,                         /* Extrusion step 2 */
+    0 3px 0 #A1131B,                         /* Extrusion step 3 */
+    0 4px 0 #8E0E15,                         /* Extrusion step 4 */
+    0 5px 0 #7A0A10,                         /* Extrusion step 5 */
+    0 6px 1px rgba(122, 10, 16, 0.35),       /* Contact shadow */
+    0 10px 16px rgba(122, 10, 16, 0.28),     /* Warm ambient bounce */
+    0 18px 30px rgba(0, 0, 0, 0.18);         /* Soft ground shadow */
+  transform: perspective(600px) translateZ(0);
+  transition: transform 0.3s ease-out, text-shadow 0.3s ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-3d-wordmark:hover {
+    transform: perspective(600px) translateZ(10px) translateY(-2px);
+    text-shadow:
+      0 -1px 0 rgba(255, 255, 255, 0.5),
+      0 1px 0 #C41C26,
+      0 2px 0 #B31720,
+      0 3px 0 #A1131B,
+      0 4px 0 #8E0E15,
+      0 5px 0 #7A0A10,
+      0 6px 0 #68080D,
+      0 7px 1px rgba(104, 8, 13, 0.4),
+      0 14px 22px rgba(122, 10, 16, 0.32),
+      0 24px 38px rgba(0, 0, 0, 0.22);
+  }
+}
+
+/* SVG Oval Stroke Drawing Animation */
+@keyframes drawOvalLoop {
+  0% {
+    stroke-dashoffset: 950;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.hero-oval-stroke {
+  stroke-dasharray: 950;
+  stroke-dashoffset: 950;
+  animation: drawOvalLoop 1.3s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+  filter: drop-shadow(0 3px 6px rgba(217, 39, 50, 0.28));
+}
+
+@keyframes heroDepthReveal {
+  from {
+    opacity: 0;
+    transform: perspective(700px) translateZ(-35px) translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(700px) translateZ(0) translateY(0);
+  }
+}
+
+.hero-depth-reveal {
+  animation: heroDepthReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+}
+
+/* 11. Cinematic Light Search Bar Particles & Soft Light System */
+@keyframes particleFloatSlow {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translateY(-8px) translateX(4px) scale(1.15);
+    opacity: 0.45;
+  }
+}
+
+@keyframes particleFloatGentle {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(6px) translateX(-5px) scale(0.9);
+    opacity: 0.4;
+  }
+}
+
+.particle-float-1 {
+  animation: particleFloatSlow 8s ease-in-out infinite;
+}
+
+.particle-float-2 {
+  animation: particleFloatGentle 10s ease-in-out infinite 1.5s;
+}
+
+.particle-float-3 {
+  animation: particleFloatSlow 9s ease-in-out infinite 3s;
+}
+
+/* Voice Search Equalizer Wave Animation */
+@keyframes voiceWave {
+  0%, 100% {
+    height: 6px;
+  }
+  50% {
+    height: 18px;
+  }
+}
+
+.voice-wave-1 {
+  animation: voiceWave 0.8s ease-in-out infinite 0.1s;
+}
+.voice-wave-2 {
+  animation: voiceWave 0.8s ease-in-out infinite 0.25s;
+}
+.voice-wave-3 {
+  animation: voiceWave 0.8s ease-in-out infinite 0.4s;
+}
+
+/* 12. Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* =====================================================================
+   13. TOAST NOTIFICATION — Slide-in from bottom
+   ===================================================================== */
+@keyframes toastSlideIn {
+  from { transform: translateY(80px) scale(0.94); opacity: 0; }
+  to   { transform: translateY(0)    scale(1);    opacity: 1; }
+}
+@keyframes toastSlideOut {
+  from { transform: translateY(0)    scale(1);    opacity: 1; }
+  to   { transform: translateY(80px) scale(0.94); opacity: 0; }
+}
+.toast-enter {
+  animation: toastSlideIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.toast-exit {
+  animation: toastSlideOut 0.22s ease-in forwards;
+}
+
+/* =====================================================================
+   14. CART DRAWER — Item stagger entrance
+   ===================================================================== */
+@keyframes cartItemEnter {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.cart-item-enter {
+  animation: cartItemEnter 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* =====================================================================
+   15. BOTTOM NAV — Badge bounce + active indicator
+   ===================================================================== */
+@keyframes badgeBounce {
+  0%, 100% { transform: scale(1); }
+  40%       { transform: scale(1.35); }
+  70%       { transform: scale(0.88); }
+}
+.badge-bounce {
+  animation: badgeBounce 0.42s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+.bottom-nav-active-dot {
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 2.5px;
+  border-radius: 9999px;
+  background-color: #D92732;
+}
+
+/* =====================================================================
+   16. SPECIAL OFFERS — Mobile horizontal scroll carousel
+   ===================================================================== */
+.offers-scroll-container {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.offers-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+.offers-scroll-item {
+  scroll-snap-align: start;
+}
+
+/* =====================================================================
+   17. PRODUCT CARD — Enhanced hover shimmer overlay
+   ===================================================================== */
+@keyframes cardShimmerSlide {
+  from { transform: translateX(-100%) skewX(-12deg); }
+  to   { transform: translateX(300%)  skewX(-12deg); }
+}
+.product-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.18) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%) skewX(-12deg);
+  pointer-events: none;
+  border-radius: inherit;
+}
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover::after {
+    animation: cardShimmerSlide 0.6s ease-out forwards;
+  }
+}

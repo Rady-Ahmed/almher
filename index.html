@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <meta name="theme-color" content="#D92732" />
+    <meta name="description" content="الماهر — متجر الخضروات والفاكهة الطازجة الفاخرة. الطازة تبدأ من الماهر. اطلب الآن عبر الواتساب بكل سهولة وسرعة." />
+    
+    <!-- PWA Settings -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="الماهر" />
+    
+    <!-- Open Graph & Social Cards -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="الماهر | AL MAHER — الطازة تبدأ من الماهر" />
+    <meta property="og:description" content="متجر الماهر لتسوق الخضروات والفاكهة الطازجة الفاخرة بأعلى جودة واختيار بعناية." />
+    <meta property="og:image" content="/logo.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="الماهر | AL MAHER" />
+    <meta name="twitter:description" content="الطازة تبدأ من الماهر — خضروات وفاكهة طازجة يومياً" />
+
+    <!-- Arabic Premium Fonts: IBM Plex Sans Arabic + Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>الماهر | AL MAHER — الطازة تبدأ من الماهر</title>
+  </head>
+  <body class="bg-surface-subtle text-ink font-sans antialiased selection:bg-brand-500 selection:text-white min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Register PWA Service Worker in production/standalone
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then(
+            (registration) => {
+              console.log('Al Maher SW registered successfully:', registration.scope);
+            },
+            (err) => {
+              console.log('Al Maher SW registration failed:', err);
+            }
+          );
+        });
+      }
+    </script>
+  </body>
+</html>

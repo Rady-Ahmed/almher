@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- AL MAHER COMPACT ICON / BADGE -->
+  <rect width="100" height="100" rx="24" fill="#D92732"/>
+  <!-- Stylized Elegant Leaf & Modern Arabic Initial 'M' -->
+  <g transform="translate(18, 14)">
+    <!-- Fresh Leaf symbol -->
+    <path d="M32 6C32 6 48 8 52 24C53.5 30 51 36 46 40C40 45 31 44.5 26 39.5C20.5 34 21.5 23.5 26 16.5C29 11.5 32 6 32 6Z" fill="#FFFFFF"/>
+    <path d="M32 6C30 16 27 26 24 36" stroke="#D92732" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="48" cy="7" r="4.5" fill="#22C55E"/>
+    <!-- Arabic Calligraphic Character 'الماهر' accent -->
+    <text x="32" y="60" text-anchor="middle" font-family="'IBM Plex Sans Arabic', 'Cairo', sans-serif" font-size="28" font-weight="900" fill="#FFFFFF">ماهر</text>
+  </g>
+</svg>
