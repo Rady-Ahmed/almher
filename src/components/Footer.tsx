@@ -394,41 +394,76 @@ export const Footer: React.FC<FooterProps> = ({
             {/* ── Contact info ── */}
             <div className="sm:col-span-1 lg:col-span-4 space-y-4">
               <h4 className="text-sm font-extrabold text-white flex items-center gap-2 after:flex-1 after:h-px after:bg-white/10">
-                بيانات المتجر
+                بيانات المتجر والتواصل
               </h4>
               <div className="space-y-3 text-xs text-gray-400">
+                {/* Working hours */}
                 <div className="flex items-start gap-2.5">
                   <Clock className="w-4 h-4 text-[#D92732] flex-shrink-0 mt-0.5" />
-                  <span className="leading-relaxed">
-                    {settings?.working_hours || 'يومياً من ٨ صباحاً حتى ١١ مساءً'}
-                  </span>
+                  <div>
+                    <span className="font-bold text-white block">مواعيد العمل:</span>
+                    <span className="leading-relaxed text-gray-300">
+                      {settings?.working_hours || 'خدمة توصيل 24 ساعة يومياً (على مدار الساعة)'}
+                    </span>
+                  </div>
                 </div>
+
+                {/* Location / Google Maps */}
                 <div className="flex items-start gap-2.5">
                   <MapPin className="w-4 h-4 text-[#D92732] flex-shrink-0 mt-0.5" />
-                  <span className="leading-relaxed">
-                    {settings?.store_address || 'جمهورية مصر العربية'}
-                  </span>
-                </div>
-                {isWaReady && (
-                  <div className="flex items-center gap-2.5">
-                    <Phone className="w-4 h-4 text-[#D92732] flex-shrink-0" />
+                  <div>
+                    <span className="font-bold text-white block">المقر الرئيسي:</span>
+                    <span className="leading-relaxed text-gray-300 block">
+                      {settings?.store_address || 'مركز مغاغة — محافظة المنيا'}
+                    </span>
                     <a
-                      href={waLink}
+                      href={settings?.maps_url || 'https://goo.gl/maps/bNQs294idzVw6WyAA?g_st=ac'}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-mono text-white hover:text-[#D92732] transition-colors"
-                      dir="ltr"
+                      className="inline-flex items-center gap-1 text-[11px] font-bold text-brand-400 hover:text-brand-300 mt-1 transition-colors"
                     >
-                      {settings?.whatsapp_number}
+                      <span>عرض موقع المتجر على خرائط Google</span>
+                      <ExternalLink className="w-3 h-3" />
                     </a>
                   </div>
-                )}
+                </div>
+
+                {/* Phone & WhatsApp */}
+                <div className="flex items-center gap-2.5 pt-1">
+                  <Phone className="w-4 h-4 text-[#D92732] flex-shrink-0" />
+                  <div className="flex items-center gap-3">
+                    <a
+                      href="tel:01155416650"
+                      className="font-mono text-white font-bold hover:text-[#D92732] transition-colors"
+                      dir="ltr"
+                    >
+                      01155416650
+                    </a>
+                    <span className="text-[10px] bg-white/10 text-gray-300 px-2 py-0.5 rounded-md">اتصال وواتساب</span>
+                  </div>
+                </div>
+
+                {/* Facebook Page Button */}
+                <div className="pt-2">
+                  <a
+                    href={settings?.facebook_url || 'https://www.facebook.com/share/1CFo1teCHV/'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#1877F2]/15 hover:bg-[#1877F2]/25 text-white text-xs font-bold transition-all border border-[#1877F2]/30 group"
+                  >
+                    <svg className="w-4 h-4 fill-[#1877F2] group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                    <span>صفحتنا الرسمية على فيسبوك</span>
+                    <ExternalLink className="w-3 h-3 text-gray-400 opacity-70" />
+                  </a>
+                </div>
               </div>
 
               {/* Thin decorative separator */}
-              <div className="border-t border-white/10 pt-4">
-                <p className="text-[11px] text-gray-500 leading-relaxed">
-                  نعمل على مدار الأسبوع لتوصيل أطيب وأطزج المنتجات في أسرع وقت.
+              <div className="border-t border-white/10 pt-3">
+                <p className="text-[11px] text-gray-400 leading-relaxed">
+                  توصيل سريع ومباشر في مغاغة وكافة أنحاء المنيا والجمهورية.
                 </p>
               </div>
             </div>

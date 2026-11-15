@@ -551,21 +551,49 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 {/* Working Hours & Store Address */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-ink mb-1.5">ساعات العمل:</label>
+                    <label className="block text-xs font-bold text-ink mb-1.5">ساعات العمل والخدمة:</label>
                     <input
                       type="text"
                       value={settingsForm.working_hours}
                       onChange={(e) => setSettingsForm({ ...settingsForm, working_hours: e.target.value })}
+                      placeholder="خدمة توصيل 24 ساعة يومياً"
                       className="w-full px-4 py-2.5 rounded-xl border border-surface-border text-sm"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-ink mb-1.5">عنوان المتجر / المنطقة:</label>
+                    <label className="block text-xs font-bold text-ink mb-1.5">عنوان المتجر والمقر:</label>
                     <input
                       type="text"
                       value={settingsForm.store_address}
                       onChange={(e) => setSettingsForm({ ...settingsForm, store_address: e.target.value })}
+                      placeholder="مركز مغاغة — محافظة المنيا"
                       className="w-full px-4 py-2.5 rounded-xl border border-surface-border text-sm"
+                    />
+                  </div>
+                </div>
+
+                {/* Social & Maps Links */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-ink mb-1.5">رابط خرائط Google (Maps URL):</label>
+                    <input
+                      type="text"
+                      value={settingsForm.maps_url || ''}
+                      onChange={(e) => setSettingsForm({ ...settingsForm, maps_url: e.target.value })}
+                      placeholder="https://goo.gl/maps/..."
+                      dir="ltr"
+                      className="w-full px-4 py-2.5 rounded-xl border border-surface-border text-sm font-mono text-xs"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-ink mb-1.5">رابط صفحة فيسبوك الرسمية:</label>
+                    <input
+                      type="text"
+                      value={settingsForm.facebook_url || ''}
+                      onChange={(e) => setSettingsForm({ ...settingsForm, facebook_url: e.target.value })}
+                      placeholder="https://facebook.com/..."
+                      dir="ltr"
+                      className="w-full px-4 py-2.5 rounded-xl border border-surface-border text-sm font-mono text-xs"
                     />
                   </div>
                 </div>

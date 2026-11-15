@@ -143,7 +143,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick, onShopClick }) => {
               <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-brand-50 text-brand-500 flex items-center justify-center flex-shrink-0">
                 <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </div>
-              <span className="text-xs sm:text-sm font-bold text-ink">توصيل سريع لكافة المناطق</span>
+              <span className="text-xs sm:text-sm font-bold text-ink">خدمة توصيل 24 ساعة — مغاغة</span>
             </div>
 
           </div>

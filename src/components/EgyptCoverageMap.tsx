@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, ShieldCheck, Truck, Sparkles, Building2, ChevronLeft } from 'lucide-react';
+import { MapPin, ShieldCheck, Truck, Sparkles, Building2 } from 'lucide-react';
 
 interface GovernorateData {
   id: string;
@@ -16,6 +16,19 @@ interface GovernorateData {
 }
 
 export const EGYPT_GOVERNORATES: GovernorateData[] = [
+  {
+    id: 'maghagha-minya',
+    name: 'مركز مغاغة — محافظة المنيا (المقر الرئيسي)',
+    region: 'عروس الصعيد — المركز الرئيسي لمتجر الماهر',
+    badge: 'خدمة وتوصيل 24 ساعة يومياً',
+    x: 63,
+    y: 48,
+    coverageStatus: 'خدمة وتوصيل فوري 24 ساعة على مدار اليوم بدون توقف',
+    localProduceOrigin: 'المقر الرئيسي للمتجر ومستودعات الفرز اليومي الفاخر',
+    deliveryTime: 'توصيل فوري 24 ساعة (خلال 30 إلى 60 دقيقة داخل مغاغة)',
+    clientCount: 'المقر الرئيسي لخدمة مغاغة وكافة مراكز المنيا',
+    description: 'من قلب مركز مغاغة بمحافظة المنيا، نقدم خدمة توصيل على مدار 24 ساعة بدون انقطاع لأجود أنواع الخضروات والفواكه الطازجة. اطلب هاتفياً أو عبر الواتساب على 01155416650، أو شرفنا بالزيارة المباشرة.'
+  },
   {
     id: 'cairo-giza',
     name: 'القاهرة الكبرى والجيزة',
@@ -339,24 +352,34 @@ export const EgyptCoverageMap: React.FC = () => {
             </div>
 
             {/* Bottom Callout */}
-            <div className="p-4 rounded-2xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-between text-xs">
+            <div className="p-4 rounded-2xl bg-brand-500/10 border border-brand-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-brand-500 flex items-center justify-center text-white font-black">
+                <div className="w-8 h-8 rounded-xl bg-brand-500 flex items-center justify-center text-white font-black flex-shrink-0">
                   ✓
                 </div>
                 <div>
                   <span className="font-extrabold text-white block">هل أنت في {selectedGov.name}؟</span>
-                  <span className="text-[11px] text-gray-400">اطلب الآن وسنصلك أينما كنت بأعلى طزاجة وأفضل جودة.</span>
+                  <span className="text-[11px] text-gray-400">خدمة وتوصيل 24 ساعة يومياً داخل مغاغة والمنيا وكافة المحافظات.</span>
                 </div>
               </div>
 
-              <a
-                href="#catalog"
-                className="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-black text-xs transition-colors flex items-center gap-1"
-              >
-                <span>تسوق الآن</span>
-                <ChevronLeft className="w-3.5 h-3.5" />
-              </a>
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <a
+                  href="https://goo.gl/maps/bNQs294idzVw6WyAA?g_st=ac"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-colors flex items-center gap-1.5"
+                >
+                  <MapPin className="w-3.5 h-3.5 text-brand-400" />
+                  <span>الموقع على الخريطة</span>
+                </a>
+                <a
+                  href="tel:01155416650"
+                  className="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-black text-xs transition-colors flex items-center gap-1 whitespace-nowrap"
+                >
+                  <span>اتصل: 01155416650</span>
+                </a>
+              </div>
             </div>
 
           </div>

@@ -3,17 +3,20 @@ import { INITIAL_PRODUCTS } from '../data/products';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 
 const PRODUCTS_STORAGE_KEY = 'al_maher_products_data_v2';
-const SETTINGS_STORAGE_KEY = 'al_maher_store_settings_v1';
+const SETTINGS_STORAGE_KEY = 'al_maher_store_settings_v2';
 
 export const DEFAULT_STORE_SETTINGS: StoreSettings = {
-  whatsapp_number: '', // Unset by default as requested in prompt Section 10
+  whatsapp_number: '01155416650',
+  phone_number: '01155416650',
   store_name: 'الماهر للخضروات والفاكهة',
   tagline: 'الطازة تبدأ من الماهر',
   delivery_enabled: true,
   pickup_enabled: true,
-  store_address: 'جمهورية مصر العربية — خدمة التوصيل السريع',
-  working_hours: 'يومياً من ٨:٠٠ ص حتى ١١:٠٠ م',
-  minimum_order_notes: 'نحرص على فرز واختيار كل حبة خضار وفاكهة طازجة خصيصاً لطلبك.'
+  store_address: 'مركز مغاغة، محافظة المنيا',
+  working_hours: 'خدمة توصيل على مدار 24 ساعة يومياً',
+  minimum_order_notes: 'نحرص على فرز واختيار كل حبة خضار وفاكهة طازجة خصيصاً لطلبك.',
+  facebook_url: 'https://www.facebook.com/share/1CFo1teCHV/',
+  maps_url: 'https://goo.gl/maps/bNQs294idzVw6WyAA?g_st=ac'
 };
 
 /**

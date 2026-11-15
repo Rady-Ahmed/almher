@@ -65,6 +65,7 @@ export interface SpecialOfferBundle {
 
 export interface StoreSettings {
   whatsapp_number: string;
+  phone_number?: string;
   store_name: string;
   tagline: string;
   delivery_enabled: boolean;
@@ -73,4 +74,6 @@ export interface StoreSettings {
   working_hours: string;
   minimum_order_notes?: string;
   admin_pin?: string;
+  facebook_url?: string;
+  maps_url?: string;
 }
