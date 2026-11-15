@@ -248,7 +248,6 @@ export const App: React.FC = () => {
           setShowOnlyFavorites(true);
           scrollToCatalog();
         }}
-        onOpenAdmin={() => setIsAdminOpen(true)}
         onInstallClick={handleInstallClick}
         canInstall={canInstallPWA}
       />

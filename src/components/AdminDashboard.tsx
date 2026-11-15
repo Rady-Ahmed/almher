@@ -683,7 +683,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   type={showPassword ? 'text' : 'password'}
                   value={passwordInput}
                   onChange={(e) => setPasswordInput(e.target.value)}
-                  placeholder="كلمة مرور الإدارة (almher2026#)"
+                  placeholder="أدخل كلمة مرور الإدارة"
                   disabled={lockoutRemaining > 0 || isVerifyingAuth}
                   className="w-full text-center py-3.5 px-11 rounded-2xl border border-surface-border text-base tracking-wider font-mono focus:outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-50 disabled:bg-zinc-100 disabled:cursor-not-allowed"
                   autoFocus
@@ -731,9 +731,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
               <div className="text-[11px] text-ink-muted bg-surface-subtle p-3 rounded-xl border border-surface-border text-right space-y-1">
                 <div className="font-bold text-ink">🔒 حماية وتشفير متقدم:</div>
-                <p>• كلمة المرور الأولية المعتمدة هي <code className="font-mono font-bold text-brand-600 bg-brand-50 px-1 py-0.5 rounded">almher2026#</code></p>
                 <p>• تم حظر وإلغاء جميع الرموز القديمة (2026, 1234, admin) نهائياً.</p>
-                <p>• النظام محمي بـ Web Crypto SHA-256 مع خاصية القفل التلقائي عند المحاولات الخاطئة.</p>
+                <p>• النظام محمي بتشفير Web Crypto مع خاصية القفل التلقائي عند المحاولات الخاطئة.</p>
               </div>
             </form>
           </div>
@@ -1555,7 +1554,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     <span>تغيير كلمة مرور الإدارة</span>
                   </div>
                   <p className="text-xs text-ink-muted">
-                    كلمة المرور الحالية هي <code className="font-mono font-bold text-brand-600">almher2026#</code>. يمكنك تعيين كلمة مرور جديدة قوية متى شئت.
+                    يمكنك تعيين كلمة مرور جديدة قوية متى شئت لحماية لوحة الإدارة.
                   </p>
 
                   <form onSubmit={handleChangePassword} className="space-y-3">

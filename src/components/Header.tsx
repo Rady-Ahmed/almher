@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Heart, Search, MessageCircle, ShieldCheck, Download, Menu, X } from 'lucide-react';
+import { ShoppingBag, Heart, Search, MessageCircle, Download, Menu, X } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { StoreSettings } from '../types';
 import { isWhatsAppConfigured } from '../utils/whatsapp';
@@ -8,7 +8,6 @@ interface HeaderProps {
   settings: StoreSettings | null;
   onOpenSearch: () => void;
   onOpenFavorites: () => void;
-  onOpenAdmin: () => void;
   onInstallClick?: () => void;
   canInstall?: boolean;
 }
@@ -17,7 +16,6 @@ export const Header: React.FC<HeaderProps> = ({
   settings,
   onOpenSearch,
   onOpenFavorites,
-  onOpenAdmin,
   onInstallClick,
   canInstall
 }) => {
@@ -147,16 +145,6 @@ export const Header: React.FC<HeaderProps> = ({
               )}
             </button>
 
-            {/* Admin Settings Button */}
-            <button
-              onClick={onOpenAdmin}
-              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl text-xs font-bold text-ink bg-surface-subtle hover:bg-brand-50 hover:text-brand-600 border border-surface-border transition-colors tap-tactile"
-              title="لوحة تحكم المسؤول / الإدارة"
-            >
-              <ShieldCheck className="w-4 h-4 text-brand-500" />
-              <span className="hidden sm:inline">لوحة الإدارة</span>
-            </button>
-
             {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -249,18 +237,6 @@ export const Header: React.FC<HeaderProps> = ({
               </svg>
             </a>
           </div>
-
-          {/* Admin Dashboard in Mobile Menu */}
-          <button
-            onClick={() => {
-              setMobileMenuOpen(false);
-              onOpenAdmin();
-            }}
-            className="w-full flex items-center justify-center gap-2 py-3 text-xs font-black bg-zinc-900 hover:bg-black text-white rounded-xl shadow-xs mt-2 tap-tactile transition-colors"
-          >
-            <ShieldCheck className="w-4 h-4 text-brand-400" />
-            <span>لوحة تحكم الإدارة (Admin Dashboard)</span>
-          </button>
 
           {canInstall && (
             <button
