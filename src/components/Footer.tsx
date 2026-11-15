@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { StoreSettings } from '../types';
-import { MessageCircle, MapPin, Clock, Heart, Download, Phone, ExternalLink } from 'lucide-react';
+import { MessageCircle, MapPin, Clock, Heart, Download, Phone, ExternalLink, ShieldCheck } from 'lucide-react';
 import { isWhatsAppConfigured, cleanPhoneNumber } from '../utils/whatsapp';
 
 interface FooterProps {
@@ -482,9 +482,11 @@ export const Footer: React.FC<FooterProps> = ({
               <span className="text-gray-700">·</span>
               <button
                 onClick={onOpenAdmin}
-                className="text-gray-600 hover:text-gray-400 transition-colors"
+                className="text-xs font-bold text-gray-400 hover:text-white transition-colors flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10"
+                title="فتح لوحة تحكم المسؤول"
               >
-                Admin
+                <ShieldCheck className="w-3.5 h-3.5 text-brand-500" />
+                <span>لوحة الإدارة</span>
               </button>
             </div>
           </div>

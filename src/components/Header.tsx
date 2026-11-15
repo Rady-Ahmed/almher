@@ -150,10 +150,11 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Admin Settings Button */}
             <button
               onClick={onOpenAdmin}
-              className="p-2 sm:p-2.5 rounded-xl text-ink-light hover:text-ink hover:bg-surface-subtle transition-colors tap-tactile"
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl text-xs font-bold text-ink bg-surface-subtle hover:bg-brand-50 hover:text-brand-600 border border-surface-border transition-colors tap-tactile"
               title="لوحة تحكم المسؤول / الإدارة"
             >
-              <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
+              <ShieldCheck className="w-4 h-4 text-brand-500" />
+              <span className="hidden sm:inline">لوحة الإدارة</span>
             </button>
 
             {/* Mobile Hamburger Toggle */}
@@ -248,6 +249,18 @@ export const Header: React.FC<HeaderProps> = ({
               </svg>
             </a>
           </div>
+
+          {/* Admin Dashboard in Mobile Menu */}
+          <button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onOpenAdmin();
+            }}
+            className="w-full flex items-center justify-center gap-2 py-3 text-xs font-black bg-zinc-900 hover:bg-black text-white rounded-xl shadow-xs mt-2 tap-tactile transition-colors"
+          >
+            <ShieldCheck className="w-4 h-4 text-brand-400" />
+            <span>لوحة تحكم الإدارة (Admin Dashboard)</span>
+          </button>
 
           {canInstall && (
             <button

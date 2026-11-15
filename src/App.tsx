@@ -72,13 +72,36 @@ export const App: React.FC = () => {
     }
   };
 
+  const handleCloseAdmin = () => {
+    setIsAdminOpen(false);
+    const hash = window.location.hash.toLowerCase();
+    if (hash.includes('admin')) {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+  };
+
   useEffect(() => {
     loadInitialData();
 
-    // Check URL query parameters for direct /admin route
-    if (window.location.pathname === '/admin' || window.location.hash === '#admin') {
-      setIsAdminOpen(true);
-    }
+    // URL listener for direct /admin route, hash, or query parameter
+    const checkAdminRoute = () => {
+      const path = window.location.pathname.toLowerCase().replace(/\/+$/, '');
+      const hash = window.location.hash.toLowerCase();
+      const search = window.location.search.toLowerCase();
+      if (
+        path === '/admin' || 
+        path.endsWith('/admin') ||
+        hash === '#admin' || 
+        hash.includes('admin') ||
+        search.includes('admin')
+      ) {
+        setIsAdminOpen(true);
+      }
+    };
+
+    checkAdminRoute();
+    window.addEventListener('hashchange', checkAdminRoute);
+    window.addEventListener('popstate', checkAdminRoute);
 
     // Scroll listener
     const handleScroll = () => {
@@ -95,6 +118,8 @@ export const App: React.FC = () => {
     window.addEventListener('beforeinstallprompt', handleInstallPrompt);
 
     return () => {
+      window.removeEventListener('hashchange', checkAdminRoute);
+      window.removeEventListener('popstate', checkAdminRoute);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('beforeinstallprompt', handleInstallPrompt);
     };
@@ -578,7 +603,7 @@ export const App: React.FC = () => {
       {/* ADMIN DASHBOARD MODAL */}
       <AdminDashboard
         isOpen={isAdminOpen}
-        onClose={() => setIsAdminOpen(false)}
+        onClose={handleCloseAdmin}
         products={products}
         settings={storeSettings}
         onRefreshData={loadInitialData}

@@ -29,11 +29,18 @@ const SESSION_MAX_AGE_MS = 8 * 60 * 60 * 1000; // 8 hours
 
 // Helper to compute SHA-256 in browser
 async function computeSha256(text: string): Promise<string> {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(text);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  if (typeof crypto !== 'undefined' && crypto?.subtle) {
+    try {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(text);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    } catch {
+      // fallback
+    }
+  }
+  return '';
 }
 
 const COMMON_UNITS = [
@@ -584,11 +591,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 fade-in text-right">
+    <div className="fixed inset-0 z-[100] overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 fade-in text-right">
       
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[60] animate-bounce">
+        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[130] animate-bounce">
           <div className={`px-5 py-3 rounded-2xl shadow-xl flex items-center gap-2.5 text-xs sm:text-sm font-bold border ${
             toastMessage.type === 'success' ? 'bg-emerald-600 text-white border-emerald-500' :
             toastMessage.type === 'error' ? 'bg-rose-600 text-white border-rose-500' :
@@ -1756,7 +1763,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
       {/* ── PRODUCT EDIT / ADD MODAL ── */}
       {isEditingProduct && currentEditingProduct && (
-        <div className="fixed inset-0 z-[60] overflow-y-auto bg-black/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
+        <div className="fixed inset-0 z-[110] overflow-y-auto bg-black/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
           <div className="relative w-full max-w-xl bg-white rounded-3xl p-5 sm:p-6 shadow-2xl border border-surface-border text-right space-y-4 max-h-[92vh] overflow-y-auto">
             
             {/* Header */}
@@ -2056,7 +2063,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
       {/* ── CUSTOM DELETE CONFIRMATION MODAL ── */}
       {productToDelete && (
-        <div className="fixed inset-0 z-[70] overflow-y-auto bg-black/70 backdrop-blur-xs flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[120] overflow-y-auto bg-black/70 backdrop-blur-xs flex items-center justify-center p-4">
           <div className="relative w-full max-w-md bg-white rounded-3xl p-6 shadow-2xl border border-surface-border text-right space-y-4">
             <div className="w-12 h-12 rounded-2xl bg-rose-50 border border-rose-100 flex items-center justify-center text-rose-600 mx-auto">
               <Trash2 className="w-6 h-6" />
@@ -2115,7 +2122,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
       {/* ── CUSTOM RESET CONFIRMATION MODAL ── */}
       {showResetConfirm && (
-        <div className="fixed inset-0 z-[70] overflow-y-auto bg-black/70 backdrop-blur-xs flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[120] overflow-y-auto bg-black/70 backdrop-blur-xs flex items-center justify-center p-4">
           <div className="relative w-full max-w-md bg-white rounded-3xl p-6 shadow-2xl border border-rose-200 text-right space-y-4">
             <div className="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 mx-auto">
               <AlertTriangle className="w-6 h-6" />
