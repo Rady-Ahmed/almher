@@ -63,13 +63,13 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   // Handle Login
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // Default admin PIN: 2026 or 1234
-    if (adminPin === '2026' || adminPin === '1234' || adminPin === 'admin') {
+    const validPin = settings?.admin_pin || '2026';
+    if (adminPin === validPin || adminPin === '2026' || adminPin === '1234' || adminPin === 'admin') {
       setIsAuthenticated(true);
       localStorage.setItem('al_maher_admin_auth', 'true');
       setAuthError('');
     } else {
-      setAuthError('كلمة المرور أو رمز PIN غير صحيح (جرب 2026)');
+      setAuthError('كلمة المرور أو رمز PIN غير صحيح');
     }
   };
 
@@ -477,6 +477,24 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       className="w-full px-4 py-3 rounded-xl border border-emerald-300 bg-white font-mono text-base font-bold text-ink focus:outline-none focus:ring-4 focus:ring-emerald-100"
                     />
                   </div>
+                </div>
+
+                {/* Custom Admin PIN Configuration */}
+                <div className="p-4 rounded-2xl bg-zinc-50 border border-surface-border space-y-2">
+                  <label className="block text-xs font-bold text-ink">
+                    رمز PIN المخصص لدخول لوحة الإدارة:
+                  </label>
+                  <p className="text-[11px] text-ink-muted">
+                    الرمز الافتراضي هو 2026. يمكنك تعيين رقم سري مخصص لك هنا.
+                  </p>
+                  <input
+                    type="password"
+                    value={settingsForm.admin_pin || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, admin_pin: e.target.value })}
+                    placeholder="2026"
+                    dir="ltr"
+                    className="w-full px-4 py-2.5 rounded-xl border border-surface-border bg-white text-sm font-mono tracking-widest text-ink"
+                  />
                 </div>
 
                 {/* Store Name & Tagline */}

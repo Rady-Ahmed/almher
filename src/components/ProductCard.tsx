@@ -78,6 +78,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect, ind
           alt={product.arabic_name}
           loading="lazy"
           onLoad={() => setImageLoaded(true)}
+          onError={(e) => {
+            setImageLoaded(true);
+            (e.currentTarget as HTMLImageElement).src = '/logo.svg';
+          }}
           className={`product-card-img w-full h-full object-contain object-center transition-opacity ${
             imageLoaded ? 'opacity-100' : 'opacity-0'
           } ${!product.is_available ? 'grayscale opacity-50' : ''}`}

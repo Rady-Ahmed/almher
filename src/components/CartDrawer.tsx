@@ -150,6 +150,9 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onProceedToOrder }) => {
                     <img
                       src={item.product.image_url}
                       alt={item.product.arabic_name}
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).src = '/logo.svg';
+                      }}
                       className="w-full h-full object-contain"
                     />
                   </div>

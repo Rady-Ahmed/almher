@@ -72,4 +72,5 @@ export interface StoreSettings {
   store_address: string;
   working_hours: string;
   minimum_order_notes?: string;
+  admin_pin?: string;
 }

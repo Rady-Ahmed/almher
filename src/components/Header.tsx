@@ -21,7 +21,7 @@ export const Header: React.FC<HeaderProps> = ({
   onInstallClick,
   canInstall
 }) => {
-  const { totalItemsCount, setIsCartDrawerOpen, favorites } = useCart();
+  const { totalItemsCount, setIsCartDrawerOpen, favorites, showToast } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isWaReady = isWhatsAppConfigured(settings);
 
@@ -111,7 +111,7 @@ export const Header: React.FC<HeaderProps> = ({
               </a>
             ) : (
               <button
-                onClick={() => alert('رقم الواتساب قيد الضبط من قبل الإدارة في لوحة التحكم')}
+                onClick={() => showToast('خدمة الواتساب', 'رقم المتجر قيد التعيين حالياً في لوحة الإدارة')}
                 className="p-2 sm:p-2.5 rounded-xl text-zinc-400 hover:text-zinc-600 hover:bg-surface-subtle transition-colors tap-tactile"
                 title="واتساب المتجر"
               >

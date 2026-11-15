@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Plus, Minus, Check, Heart, ShoppingBag } from 'lucide-react';
+import { X, Plus, Minus, Check, Heart, ShoppingBag, Share2 } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
 
@@ -9,7 +9,7 @@ interface ProductModalProps {
 }
 
 export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
-  const { addToCart, isFavorite, toggleFavorite, setIsCartDrawerOpen } = useCart();
+  const { addToCart, isFavorite, toggleFavorite, setIsCartDrawerOpen, showToast } = useCart();
   
   const [selectedUnit, setSelectedUnit] = useState<string>('كيلو');
   const [quantity, setQuantity] = useState<number>(1);
@@ -29,6 +29,25 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) 
   if (!product) return null;
 
   const favorited = isFavorite(product.id);
+
+  const handleShare = async () => {
+    const shareData = {
+      title: `${product.arabic_name} — الماهر`,
+      text: `اطلب ${product.arabic_name} طازجة من متجر الماهر للخضروات والفاكهة`,
+      url: window.location.href,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch {
+        // Share cancelled or failed
+      }
+    } else {
+      await navigator.clipboard.writeText(`${shareData.text}\n${shareData.url}`);
+      showToast('تم نسخ الرابط بنجاح', 'يمكنك مشاركته الآن على واتساب أو وسائل التواصل');
+    }
+  };
 
   const handleAddToCart = () => {
     if (!product.is_available) return;
@@ -65,15 +84,25 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) 
 
         {/* Header Bar */}
         <div className="flex items-center justify-between px-5 py-3.5 border-b border-surface-border/80">
-          <button
-            onClick={handleHeartClick}
-            aria-label="المفضلة"
-            className={`p-2 rounded-xl transition-all tap-tactile ${
-              favorited ? 'text-brand-500 bg-brand-50' : 'text-zinc-400 hover:text-brand-500'
-            } ${heartAnim ? 'heart-pop' : ''}`}
-          >
-            <Heart className={`w-5 h-5 ${favorited ? 'fill-brand-500' : ''}`} />
-          </button>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={handleHeartClick}
+              aria-label="المفضلة"
+              className={`p-2 rounded-xl transition-all tap-tactile ${
+                favorited ? 'text-brand-500 bg-brand-50' : 'text-zinc-400 hover:text-brand-500'
+              } ${heartAnim ? 'heart-pop' : ''}`}
+            >
+              <Heart className={`w-5 h-5 ${favorited ? 'fill-brand-500' : ''}`} />
+            </button>
+            <button
+              onClick={handleShare}
+              aria-label="مشاركة الصنف"
+              className="p-2 rounded-xl text-zinc-400 hover:text-brand-500 hover:bg-brand-50/50 transition-colors tap-tactile"
+              title="مشاركة هذا الصنف"
+            >
+              <Share2 className="w-4.5 h-4.5" />
+            </button>
+          </div>
 
           <span className="text-xs font-bold text-ink-muted">تفاصيل الصنف</span>
 
@@ -94,6 +123,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) 
             <img
               src={product.image_url}
               alt={product.arabic_name}
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).src = '/logo.svg';
+              }}
               className="w-full h-full object-contain object-center transition-transform duration-300"
             />
             {product.is_seasonal && (

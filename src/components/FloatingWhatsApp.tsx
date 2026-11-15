@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StoreSettings } from '../types';
 import { isWhatsAppConfigured, cleanPhoneNumber } from '../utils/whatsapp';
+import { useCart } from '../context/CartContext';
 
 interface FloatingWhatsAppProps {
   settings: StoreSettings | null;
@@ -8,12 +9,16 @@ interface FloatingWhatsAppProps {
 
 export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ settings }) => {
   const [showTooltip, setShowTooltip] = useState(false);
+  const { showToast } = useCart();
   const isConfigured = isWhatsAppConfigured(settings);
 
   const handleClick = (e: React.MouseEvent) => {
     if (!isConfigured) {
       e.preventDefault();
-      alert('رقم خدمة العملاء عبر الواتساب قيد التجهيز حالياً. يمكنك تصفح المنتجات وإرسال طلبك عبر المتجر مباشرة.');
+      showToast(
+        'رقم الواتساب قيد التعيين',
+        'يمكنك تصفح المنتجات وإرسال طلبك مباشرة من داخل السلة'
+      );
       return;
     }
 
