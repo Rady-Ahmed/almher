@@ -16,7 +16,8 @@ export const DEFAULT_STORE_SETTINGS: StoreSettings = {
   working_hours: 'خدمة توصيل على مدار 24 ساعة يومياً',
   minimum_order_notes: 'نحرص على فرز واختيار كل حبة خضار وفاكهة طازجة خصيصاً لطلبك.',
   facebook_url: 'https://www.facebook.com/share/1CFo1teCHV/',
-  maps_url: 'https://goo.gl/maps/bNQs294idzVw6WyAA?g_st=ac'
+  maps_url: 'https://goo.gl/maps/bNQs294idzVw6WyAA?g_st=ac',
+  admin_pin: 'almher2026#'
 };
 
 /**
@@ -43,7 +44,7 @@ export async function getProducts(): Promise<Product[]> {
     const cached = localStorage.getItem(PRODUCTS_STORAGE_KEY);
     if (cached) {
       const parsed = JSON.parse(cached);
-      if (Array.isArray(parsed) && parsed.length >= 100) {
+      if (Array.isArray(parsed) && parsed.length > 0) {
         return parsed;
       }
     }
@@ -82,6 +83,10 @@ export async function saveProduct(product: Product): Promise<Product> {
           is_seasonal: product.is_seasonal,
           allowed_units: product.allowed_units,
           default_unit: product.default_unit,
+          price: product.price,
+          price_before_discount: product.price_before_discount,
+          stock_quantity: product.stock_quantity,
+          is_best_seller: product.is_best_seller,
           updated_at: new Date().toISOString()
         })
         .select()
@@ -179,6 +184,7 @@ export async function updateStoreSettings(settings: Partial<StoreSettings>): Pro
         .upsert({
           id: 1,
           whatsapp_number: merged.whatsapp_number,
+          phone_number: merged.phone_number,
           store_name: merged.store_name,
           tagline: merged.tagline,
           delivery_enabled: merged.delivery_enabled,
@@ -186,6 +192,9 @@ export async function updateStoreSettings(settings: Partial<StoreSettings>): Pro
           store_address: merged.store_address,
           working_hours: merged.working_hours,
           minimum_order_notes: merged.minimum_order_notes,
+          admin_pin: merged.admin_pin,
+          facebook_url: merged.facebook_url,
+          maps_url: merged.maps_url,
           updated_at: new Date().toISOString()
         })
         .select()

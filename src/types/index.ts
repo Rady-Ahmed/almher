@@ -26,6 +26,10 @@ export interface Product {
   is_seasonal: boolean;
   allowed_units: string[];
   default_unit: string;
+  price?: number;
+  price_before_discount?: number;
+  stock_quantity?: number;
+  is_best_seller?: boolean;
   created_at?: string;
   updated_at?: string;
 }
