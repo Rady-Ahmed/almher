@@ -102,6 +102,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
     });
 
+    // Haptic feedback on mobile devices
+    if (typeof navigator !== 'undefined' && navigator.vibrate) {
+      try { navigator.vibrate(20); } catch { /* ignore */ }
+    }
+
     showToast(`تمت إضافة ${product.arabic_name}`, `${quantity} ${unit} في سلة طلبك`);
   };
 

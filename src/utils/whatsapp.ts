@@ -61,6 +61,12 @@ export function generateWhatsAppOrderMessage(
     msg += `• *عنوان التوصيل بالتفصيل:* ${customerInfo.delivery_address}\n`;
   }
 
+  const paymentLabel = 
+    customerInfo.payment_method === 'vodafone_cash' ? '📱 فودافون كاش (01155416650)' :
+    customerInfo.payment_method === 'instapay' ? '⚡ تحويل إنستاباي (InstaPay)' :
+    '💵 دفع نقداً عند الاستلام (كاش)';
+  msg += `• *طريقة الدفع:* ${paymentLabel}\n`;
+
   msg += `\n🛒 *قائمة الأصناف المطلوبة (${cartItems.length} صنف):*\n`;
   msg += `─────────────────────\n`;
 

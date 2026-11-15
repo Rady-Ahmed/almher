@@ -1,5 +1,8 @@
+# Robots.txt for Al-Maher Produce Store (مركز مغاغة، محافظة المنيا)
 User-agent: *
 Allow: /
 Disallow: /admin
+Disallow: /#admin
 
-Sitemap: https://al-maher.store/sitemap.xml
+# Search Engine Sitemaps
+Sitemap: https://almherfood.vercel.app/sitemap.xml

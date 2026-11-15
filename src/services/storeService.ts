@@ -2,7 +2,7 @@ import { Product, StoreSettings } from '../types';
 import { INITIAL_PRODUCTS } from '../data/products';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 
-const PRODUCTS_STORAGE_KEY = 'al_maher_products_data_v2';
+const PRODUCTS_STORAGE_KEY = 'al_maher_products_data_v3';
 const SETTINGS_STORAGE_KEY = 'al_maher_store_settings_v2';
 
 export const DEFAULT_STORE_SETTINGS: StoreSettings = {

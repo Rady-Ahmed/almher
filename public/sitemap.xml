@@ -1,27 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://al-maher.store/</loc>
-    <lastmod>2026-11-14</lastmod>
+    <loc>https://almherfood.vercel.app/</loc>
+    <lastmod>2026-11-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://almherfood.vercel.app/logo.svg</image:loc>
+      <image:title>الماهر للخضروات والفاكهة — مركز مغاغة، المنيا</image:title>
+      <image:caption>الطازة تبدأ من الماهر — خضروات وفاكهة طازجة فرز أول مع خدمة توصيل 24 ساعة</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://al-maher.store/#vegetables</loc>
-    <lastmod>2026-11-14</lastmod>
+    <loc>https://almherfood.vercel.app/#catalog</loc>
+    <lastmod>2026-11-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://al-maher.store/#fruits</loc>
-    <lastmod>2026-11-14</lastmod>
+    <loc>https://almherfood.vercel.app/#vegetables</loc>
+    <lastmod>2026-11-15</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://al-maher.store/#categories</loc>
-    <lastmod>2026-11-14</lastmod>
+    <loc>https://almherfood.vercel.app/#fruits</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://almherfood.vercel.app/#special-offers</loc>
+    <lastmod>2026-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://almherfood.vercel.app/#why-us</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://almherfood.vercel.app/#about-us</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

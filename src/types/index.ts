@@ -52,6 +52,7 @@ export interface OrderCustomerInfo {
   contact_person?: string;
   fulfillment_method: FulfillmentMethod;
   delivery_address?: string;
+  payment_method?: 'cash' | 'vodafone_cash' | 'instapay';
   order_notes?: string;
 }
 

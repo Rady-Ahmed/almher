@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Send, MapPin, Store, User, Building, AlertCircle, Copy, Check } from 'lucide-react';
+import { X, Send, MapPin, Store, User, Building, AlertCircle, Copy, Check, Banknote, Smartphone, Zap } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { StoreSettings, CustomerType, FulfillmentMethod, OrderCustomerInfo } from '../types';
 import { buildWhatsAppLink } from '../utils/whatsapp';
@@ -27,9 +27,11 @@ export const OrderModal: React.FC<OrderModalProps> = ({
     settings?.delivery_enabled ? 'delivery' : 'pickup'
   );
   const [deliveryAddress, setDeliveryAddress] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState<'cash' | 'vodafone_cash' | 'instapay'>('cash');
   const [orderNotes, setOrderNotes] = useState('');
 
   const [copied, setCopied] = useState(false);
+  const [copiedWallet, setCopiedWallet] = useState(false);
   const [showConfigNotice, setShowConfigNotice] = useState(false);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
@@ -60,6 +62,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
     business_name: businessName,
     fulfillment_method: fulfillmentMethod,
     delivery_address: deliveryAddress,
+    payment_method: paymentMethod,
     order_notes: orderNotes
   };
 
@@ -296,6 +299,81 @@ export const OrderModal: React.FC<OrderModalProps> = ({
               )}
             </div>
           )}
+
+          {/* Payment Method Selector */}
+          <div>
+            <label className="block text-xs font-black text-ink mb-2">طريقة الدفع المفضلة:</label>
+            <div className="grid grid-cols-3 gap-2">
+              <button
+                type="button"
+                onClick={() => setPaymentMethod('cash')}
+                className={`flex flex-col items-center justify-center gap-1.5 p-2.5 rounded-2xl border text-xs font-bold transition-all ${
+                  paymentMethod === 'cash'
+                    ? 'bg-brand-50 border-brand-500 text-brand-700 shadow-xs'
+                    : 'bg-surface-subtle border-surface-border text-ink hover:bg-white'
+                }`}
+              >
+                <Banknote className="w-4 h-4 text-emerald-600" />
+                <span>كاش عند الاستلام</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setPaymentMethod('vodafone_cash')}
+                className={`flex flex-col items-center justify-center gap-1.5 p-2.5 rounded-2xl border text-xs font-bold transition-all ${
+                  paymentMethod === 'vodafone_cash'
+                    ? 'bg-rose-50 border-rose-500 text-rose-700 shadow-xs'
+                    : 'bg-surface-subtle border-surface-border text-ink hover:bg-white'
+                }`}
+              >
+                <Smartphone className="w-4 h-4 text-rose-600" />
+                <span>فودافون كاش</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setPaymentMethod('instapay')}
+                className={`flex flex-col items-center justify-center gap-1.5 p-2.5 rounded-2xl border text-xs font-bold transition-all ${
+                  paymentMethod === 'instapay'
+                    ? 'bg-purple-50 border-purple-500 text-purple-700 shadow-xs'
+                    : 'bg-surface-subtle border-surface-border text-ink hover:bg-white'
+                }`}
+              >
+                <Zap className="w-4 h-4 text-purple-600" />
+                <span>إنستاباي InstaPay</span>
+              </button>
+            </div>
+
+            {/* Vodafone Cash Details Box */}
+            {paymentMethod === 'vodafone_cash' && (
+              <div className="mt-2.5 p-3 rounded-xl bg-rose-50/70 border border-rose-200 flex items-center justify-between text-xs">
+                <div>
+                  <span className="font-bold text-rose-900">رقم محفظة فودافون كاش: </span>
+                  <span className="font-mono font-black text-rose-700 text-sm">01155416650</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigator.clipboard.writeText('01155416650');
+                    setCopiedWallet(true);
+                    setTimeout(() => setCopiedWallet(false), 2000);
+                  }}
+                  className="px-2.5 py-1 rounded-lg bg-white border border-rose-200 text-rose-700 font-bold text-[11px] hover:bg-rose-100 flex items-center gap-1 transition-colors"
+                >
+                  {copiedWallet ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                  <span>{copiedWallet ? 'تم النسخ' : 'نسخ الرقم'}</span>
+                </button>
+              </div>
+            )}
+
+            {/* InstaPay Details Box */}
+            {paymentMethod === 'instapay' && (
+              <div className="mt-2.5 p-3 rounded-xl bg-purple-50/70 border border-purple-200 text-xs text-purple-900 leading-relaxed">
+                <span className="font-bold">تحويل إنستاباي الفوري: </span>
+                <span>يمكنك تحويل قيمة الطلب لرقم المتجر <strong>01155416650</strong> أو إرسال صورة التحويل عبر الواتساب مباشرة لتجهيز الطلب فوراً.</span>
+              </div>
+            )}
+          </div>
 
           {/* Order Notes */}
           <div>
